@@ -3,8 +3,14 @@
 import { ModalService } from '../_services';
 
 @Component({
-    selector: 'modal',
-    template: '<ng-content></ng-content>'
+    selector: 'jw-modal',
+    template: 
+        `<div class="jw-modal">
+            <div class="jw-modal-body">
+                <ng-content></ng-content>
+            </div>
+        </div>
+        <div class="jw-modal-background"></div>`
 })
 
 export class ModalComponent implements OnInit, OnDestroy {
@@ -29,7 +35,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
         // close modal on background click
         this.element.addEventListener('click', function (e: any) {
-            if (e.target.className === 'modal') {
+            if (e.target.className === 'jw-modal') {
                 modal.close();
             }
         });
@@ -47,12 +53,12 @@ export class ModalComponent implements OnInit, OnDestroy {
     // open modal
     open(): void {
         this.element.style.display = 'block';
-        document.body.classList.add('modal-open');
+        document.body.classList.add('jw-modal-open');
     }
 
     // close modal
     close(): void {
         this.element.style.display = 'none';
-        document.body.classList.remove('modal-open');
+        document.body.classList.remove('jw-modal-open');
     }
 }
